@@ -1,0 +1,341 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Language" content="ru">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="-1">
+		<meta name="description" content="Сайт инди-студии Member Arcades">
+		<meta name="keywords" content="Member Arcades, indy, games">
+		<meta name="developer" content="Dimonchik0036, BanyRule">
+		
+		<title>Member Arcades</title>
+
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> 
+		<link rel="shortcut icon" href="favicon.png" type="image/png">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+
+		<style>
+			.is_overlay{ display: block; width: 100%; height: 100%; }
+			
+
+			#preloader {
+				margin: auto; 
+				left: 0; top: 0; right: 0; bottom: 0; 
+				position: absolute;
+				width: 4em;				
+				height: 4em;
+				text-align: center;
+				vertical-align: middle;
+				transition: opacity .3s;
+				-webkit-transition: opacity .3s;
+				-moz-transition: opacity .3s;
+				-ms-transition: opacity .3s;
+				-o-transition: opacity .3s;
+				background-color: black;
+				border: 1px solid black;
+				border-radius: 10px;
+				padding: 5px;
+			}
+
+			#wait { 
+				-webkit-animation: spin 1.2s infinite linear; 
+				-moz-animation: spin 1.2s infinite linear; 
+				-ms-animation: spin 1.2s infinite linear; 
+				-o-animation: spin 1.2s infinite linear; 
+				animation: spin 1.2s infinite linear; 
+				font-size: 4em;
+				color: white;
+			}
+			
+
+			body {
+				background-color: black;
+			}
+
+
+			#trailer {
+				position: fixed;
+				top: 0; right: 0; bottom: 0; left: 0;
+				overflow: hidden;
+			}
+
+
+			#trailer > video {
+				position: absolute;
+				filter: grayscale(70%);
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+
+			@media (min-aspect-ratio: 16/9) {
+				#trailer > video { height: 300%; top: -100%; }
+			}
+
+
+			@media (max-aspect-ratio: 16/9) {
+				#trailer > video { width: 300%; left: -100%; }
+			}
+
+
+			@supports (object-fit: cover) {
+				#trailer > video {
+					top: 0; left: 0;
+					width: 100%; height: 100%;
+					object-fit: cover;
+				}
+			}
+
+
+			#logotext {
+				position: fixed;
+				z-index: 100;
+				left:  3%;
+				top: 10%;
+
+			}
+
+
+			#members_area {
+				width: 85%;
+				height: 60%;
+				overflow: auto;
+				margin: auto;
+				position: absolute;
+				top: 0; left: 0; bottom: 0; right: 0;
+
+				/*background: #AAAAAA;*/
+
+				text-align: center;
+
+				z-index: 100;
+				opacity: 0;
+				transition: opacity 4s;
+				-webkit-transition: opacity 4s;
+				-moz-transition: opacity 4s;
+				-ms-transition: opacity 4s;
+				-o-transition: opacity 4s;
+			}
+
+
+			#member {
+				width: 25%;
+				height: 90%;
+
+				display: inline-block; /*располагаем блоки в ряд по горизонтали*/
+				margin-right: 1%;
+
+				/*background: #00FF00;*/
+				
+			}
+
+
+			h1, h2, h3, p, a {
+				font-family: 'Roboto', sans-serif;
+				color: #FFFFFF;
+				text-decoration: none;
+				font-size: 1vw;
+			}
+
+			a {
+				color: #34ABE0;
+			}
+
+			h1 {
+				font-size: 1.5vw;
+			}
+
+			.avatar {
+				width: 64%;
+				border-radius: 50%;
+				border: 4px solid black;
+ 			}﻿
+
+ 			@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+			
+			* {
+			  box-sizing: border-box;
+			}
+
+			body {
+			  font-family: 'Lato', sans-serif;
+			  background: #222;
+			}
+
+			.logo {
+			  width: 500px;
+			  height: 60px;
+			  position: absolute;
+			  top: 0; bottom: 0; left: 0; right: 0;
+			  margin: auto;
+			}
+
+			.box {
+			  width: 60px;
+			  height: 60px;
+			  border: 1px solid rgba(0,0,0,.5);
+			  border-radius: 10px;
+			  background: #00e600;
+			  color: #fff;
+			  font-size: 26px;
+			  font-weight: 700;
+			  line-height: 60px;
+			  text-align: center;
+			  font-style: italic;
+			  position: absolute;
+			  left: 0%;
+			  z-index: 2;
+			  animation: test 2s;
+			}
+
+			.box:after {
+			  content: "";
+			  display: block;
+			  height: 90%;
+			  width: 1px;
+			  background: #fff;
+			  position: absolute;
+			  top: 0; right: -10px; bottom: 0;
+			  margin: auto;
+			  animation: expand 2s;
+			}
+
+			.text {
+			  height: 60px;
+			  color: #fff;
+			  padding-left: 80px;
+			  line-height: 60px;
+			  font-size: 30px;
+			  font-weight: 100;
+			  animation: fade 2.5s;
+			}
+
+			@keyframes expand {
+			  0% { height: 0; }
+			  40% { height: 0; }
+			  60% { height: 80%; }
+			}
+
+			@keyframes test {
+			  0% { transform: scale(0);  left: 39%; }
+			  40% { transform: scale(1);  left: 39%;}
+			  60% { transform: scale(1);  left: 39%;}
+			  100% { left: 0%; }
+			}
+
+			@keyframes fade {
+			  0% { opacity: 0; }
+			  65% { opacity: 0; padding-left: 70px; }
+			  100% { opacity: 1; padding-left: 80px; }
+			}
+
+		</style>
+
+		<script src="detect.min.js"></script>
+
+		<script type="text/javascript">
+			var Preloader = function (element) {				
+				var video =  document.getElementById(element),
+					preloader = document.getElementById('preloader'),
+					logotext = document.getElementById('logotext');
+					members_area = document.getElementById('members_area');
+
+				var ua = detect.parse(navigator.userAgent);
+				if ( ua.os.family === 'Android' ) {
+					video.setAttribute( 'controls','controls' );
+				}
+				
+				var api = {};
+
+				api._removePreloader = function() {
+					preloader.style.opacity = 0;
+					logotext.style.opacity = 1;
+					members_area.style.opacity = 1;
+
+				};
+
+				api.startCheckingLoading = function() {
+					video.addEventListener('click',function(){
+					  video.play();
+					},false);
+
+					video.addEventListener( 'play', api._removePreloader() );			
+				};
+
+				return api;			   			   
+			}
+			
+			window.addEventListener('load', function() {
+				var preloader = Preloader('video');
+				preloader.startCheckingLoading();	
+			});
+		</script>
+		
+	</head>
+
+
+	<body>
+		<div id="logotext">
+			<a href="https://github.com/MemberArcades"></a>
+
+			<div class="logo">
+			  <div class="box">MA</div>
+			  <div class="text"><span class="first">Member</span> <span class="second">Arcades</span></div>
+			</div>
+
+
+		</div>
+
+
+
+
+		<div id="members_area">
+			<div id="member">
+				<a href="https://github.com/Dimonchik0036" target="_blank"><img class="avatar" src='img/DimoAv.jpg'></a>
+				<h1>Дмитрий Гридин</h1>
+				<h2><a href="https://t.me/Dimonchik0036" target="_blank">@Dimonchik0036<span class="glyphicon glyphicon-send"></span></a></h2>
+				<p>Работает с сетями</p>
+				<p>Golang, C/C++, Python</p>
+				<span class="social social-vk"></span>
+
+							
+
+			</div>
+
+			<div id="member">
+				<a href="https://github.com/banyrule" target="_blank"><img class="avatar" src='img/BanyAv.jpg'></a>
+				<h1>Евгений Макрушин</h1>
+				<h2><a href="https://t.me/banyrule" target="_blank">@Banyrule<span class="glyphicon glyphicon-send"></span></a></h2>
+				<p>Рисует полигоны</p>
+				<p>C/C++, OpenGL, Python</p>
+
+			</div>
+
+			<div id="member">
+				<a href="https://github.com/kirpichik" target="_blank"><img class="avatar" src='img/KirpAv.jpg'></a>	
+				<h1>Кирилл Полушин</h1>
+				<h2><a href="https://t.me/kirpichik" target="_blank">@Kirpichik<span class="glyphicon glyphicon-send"></span></a></h2>
+				<p>Играет в <a style="color: #00e600" href="http://kirill.polushin.org:8123/" target="_blank">майнкрафт</a></p>
+				<p>Java, C/C++, Android</p>
+
+			</div>
+		</div>
+
+		<div id="trailer" class="is_overlay">
+			<video id="video" width="100%" height="auto"  autoplay="autoplay" loop="loop" preload="auto" >
+				<source src="background.mp4">
+				<source src="background.webm" type="video/webm">
+			</video>
+		</div>
+
+		<div id="preloader">
+			<i id="wait" class="fa fa-spinner"></i>
+		</div>
+	</body>
+</html>
