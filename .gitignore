@@ -3,3 +3,6 @@
 Local*
 *.go
 detect.min.js
+border/
+no border/
+old/
