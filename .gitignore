@@ -2,3 +2,4 @@
 .idea*
 Local*
 *.go
+detect.min.js
